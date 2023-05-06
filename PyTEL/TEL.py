@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 arduino = serial.Serial('COM4', 9600)
 
 # Configurar la ventana de gráficos
-fig, (ax1, ax2, ax3) = plt.subplots(3, 1)
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1)
 plt.subplots_adjust(hspace=0.5)
 
 # Inicializar las variables para almacenar los datos
@@ -17,6 +17,7 @@ z_acc = []
 x_gyro = []
 y_gyro = []
 z_gyro = []
+altitud = []
 
 # Función para actualizar los datos y graficarlos en tiempo real
 def update():
@@ -29,6 +30,7 @@ def update():
     gyro_x = float(data[3])
     gyro_y = float(data[4])
     gyro_z = float(data[5])
+    alt = float(data[6])
     # Almacenar los datos
     x_acc.append(acc_x)
     y_acc.append(acc_y)
@@ -36,6 +38,7 @@ def update():
     x_gyro.append(gyro_x)
     y_gyro.append(gyro_y)
     z_gyro.append(gyro_z)
+    altitud.append(alt)
     # Actualizar las gráficas
     ax1.clear()
     ax1.plot(x_acc, label='X')
@@ -62,6 +65,12 @@ def update():
     ax3.set_xlabel('Muestras')
     ax3.set_ylabel('Valores')
     ax3.legend()
+    ax4.clear()
+    ax4.plot(altitud, label='Altitud')
+    ax4.set_title('Altitud')
+    ax4.set_xlabel('Muestras')
+    ax4.set_ylabel('Altitud (metros)')
+    ax4.legend()
 
 # Bucle principal
 while True:
