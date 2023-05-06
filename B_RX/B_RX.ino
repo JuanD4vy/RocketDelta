@@ -33,8 +33,6 @@ void loop()
     GyZ = datos[5];
     ALTITUD = datos[6];
 
-    //Serial.print(ALTITUD);
-    //Serial.print(";");
     Serial.print(AcX);
     Serial.print(",");
     Serial.print(AcY);
@@ -45,7 +43,10 @@ void loop()
     Serial.print(",");
     Serial.print(GyY);
     Serial.print(",");
-    Serial.println(GyZ);
+    Serial.print(GyZ);
+    Serial.print(",");
+    Serial.println(ALTITUD);
+    
   }
   delay(100);
 }
